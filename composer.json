@@ -1,0 +1,9 @@
+{
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "doctrine/common": "2.4.*",
+        "doctrine/dbal": "2.4.*",
+        "doctrine/orm": "2.4.*",
+        "dflydev/doctrine-orm-service-provider": "1.0.*@dev"
+    }
+}
