@@ -2,6 +2,7 @@
 
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
+use Silex\Provider\TwigServiceProvider;
  
 use Doctrine\Common\Cache\ApcCache as Cache;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -13,6 +14,10 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 require_once __DIR__.'/bootstrap.php';
  
 $app = new Application();
+
+$app->register(new TwigServiceProvider, array(
+    'twig.path' => __DIR__.'/src/AlbumPhotos/View'
+));
 
 //configuração do DBAL
 $app->register(new DoctrineServiceProvider, array(
@@ -42,7 +47,8 @@ $app->register(new DoctrineOrmServiceProvider(), array(
     'orm.auto_generate_proxies' => true,
     'orm.default_cache' => 'apc'
 ));
- 
+
+require_once __DIR__.'/src/AlbumPhotos/Routes/routes.php';
 
 $app['debug'] = true;
 $app->run();
