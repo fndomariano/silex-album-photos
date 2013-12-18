@@ -10,31 +10,34 @@
 			</div>
 		</div>
 	{% endfor %}
+	
 	<div class="ui two column grid">
 		<div class="column">
 			<div class="ui fluid form segment">
 				<h3 class="ui header">Log-in</h3>
-				<div class="field">
-					<label for="Login">Login</label>
-					<div class="ui left labeled input">
-						<input placeholder="Login" type="text" id="Login" name="login">
-						<div class="ui corner label">
-					    	<i class="icon asterisk"></i>
-					    </div>
+				<form action="" method="post">
+					<div class="field">
+						<label for="Login">Login</label>
+						<div class="ui left labeled input">
+							<input placeholder="Login" type="text" id="Login" name="login">
+							<div class="ui corner label">
+						    	<i class="icon asterisk"></i>
+						    </div>
+						</div>
 					</div>
-				</div>
-				<div class="field">
-					<label for="Password">Password</label>
-					<div class="ui left labeled input">
-						<input type="password" placeholder="Password" id="Password" name="password">
-						<div class="ui corner label">
-					    	<i class="icon asterisk"></i>
-					    </div>
+					<div class="field">
+						<label for="Password">Password</label>
+						<div class="ui left labeled input">
+							<input type="password" placeholder="Password" id="Password" name="password">
+							<div class="ui corner label">
+						    	<i class="icon asterisk"></i>
+						    </div>
+						</div>
 					</div>
-				</div>
-				<div class="ui right floated wide column">
-					<button type="submit" class="ui green button">Login</button>
-				</div>
+					<div class="ui right floated wide column">
+						<button type="submit" class="ui green button">Login</button>
+					</div>
+				</form>
 			</div>
 		</div>
 
