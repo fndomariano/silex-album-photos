@@ -1,18 +1,37 @@
+<!doctype html>
 <html>
 <head>
 	<title>{% block title %} Album Photos {% endblock %}</title>
+	<link rel="stylesheet" href="{{app.request.baseUrl}}/assets/css/semantic.min.css" />
+	<link rel="stylesheet" href="{{app.request.baseUrl}}/assets/css/album.css" />
 </head>
 <body>
-	<head>
-		
-	</head>
-	<section>
-		{%block content%}
-
-		{%endblock%}
+	<header>
+		<div class="row">
+			<div class="column">
+				{%block header%}
+					<h1 class="text-center">Album Photos</h1>
+				{%endblock%}	
+			</div>
+		</div>
+	</header>
+	
+	<section class="ui grid">
+		<div class="row">
+			<div class="column">
+			{%block content%}
+			
+			{%endblock%}	
+			</div>
+		</div>
 	</section>
-	<footer>
-		
+	
+	<footer class="ui grid">
+		<div class="row">
+			<div class="column">
+				<div class="text-center"> Developed by <strong>Fernando Mariano</strong></div>	
+			</div>
+		</div>
 	</footer>
 </body>
 </html>

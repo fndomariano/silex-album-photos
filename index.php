@@ -10,6 +10,7 @@ use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
+use Symfony\Component\HttpFoundation\Session\Session;
  
 require_once __DIR__.'/bootstrap.php';
  
@@ -45,9 +46,15 @@ $app->register(new DoctrineOrmServiceProvider(), array(
     ),
     'orm.proxies_namespace' => 'EntityProxy',
     'orm.auto_generate_proxies' => true,
-    'orm.default_cache' => 'apc'
+    //'orm.default_cache' => 'apc'
 ));
 
+//Session
+$session = new Session();
+$session->start();
+$app['session'] = $session; 
+
+//Rotas
 require_once __DIR__.'/src/AlbumPhotos/Routes/routes.php';
 
 $app['debug'] = true;
