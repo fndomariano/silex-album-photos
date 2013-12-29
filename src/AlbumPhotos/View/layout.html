@@ -7,11 +7,19 @@
 </head>
 <body>
 	<header>
-		<div class="row">
-			<div class="column">
-				{%block header%}
-					<h1 class="text-center">Album Photos</h1>
-				{%endblock%}	
+		<div class="ui grid">
+			<div class="row">
+				<div class="ui aligned center column segment">
+					<h1>
+					{%block header%} Album Photos {%endblock%}
+					</h1>	
+				</div>
+			</div>
+			<div class="row">
+				<div class="ui aligned center column segment">
+					{% block breadcrumb %}
+					{% endblock %}		
+				</div>
 			</div>
 		</div>
 	</header>
@@ -26,7 +34,7 @@
 		</div>
 	</section>
 	
-	<footer class="ui grid">
+	<footer class="ui grid segment footer" style="margin: 30px;">
 		<div class="row">
 			<div class="column">
 				<div class="text-center"> Developed by <strong>Fernando Mariano</strong></div>	

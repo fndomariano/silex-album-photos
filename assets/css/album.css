@@ -5,3 +5,8 @@ body{
 .text-center{
 	text-align: center;
 }
+
+a{
+	color:#009FDA;
+	text-decoration: none;
+}

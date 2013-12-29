@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block header %}
+	Album Photos 
+{% endblock %}
+
+{% block breadcrumb %}
+	
+	<div class="ui huge breadcrumb">
+		<a class="section" href="/album">Album</a>
+		<i class="right arrow icon divider"></i>
+		<div class="active section">add</div>
+	</div>	
+		
+{% endblock %}
+
+
+{% block content %}
+<div class="ui middle aligned column grid segment">
+		<div class="row">
+			<div class="column">
+				<div class="ui small form">
+					<form action="/album/add" method="post" enctype="multipart/form-data">
+						<div class="field">
+							<label for="name">Name</label>
+							<div class="ui left labeled input">
+								<input placeholder="Name...." type="text" id="name" name="name">
+								<div class="ui corner label">
+							    	<i class="icon asterisk"></i>
+							    </div>
+							</div>
+						</div>
+						<div class="field">
+							<label for="cover_page">Cover page</label>
+							<div class="ui left labeled input">
+								<input type="file" id="cover_page" name="cover_page">
+								<div class="ui corner label">
+							    	<i class="icon asterisk"></i>
+							    </div>
+							</div>
+						</div>
+						<div class="field">
+							<label for="Password">Description</label>
+							<div class="ui left labeled input">
+								<textarea name="description" id="description" cols="30" rows="10" placeholder="Description..."></textarea>
+							</div>
+						</div>
+						<div class="ui right floated wide column">
+							<button type="submit" class="ui green button">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

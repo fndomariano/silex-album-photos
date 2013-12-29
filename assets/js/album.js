@@ -52,5 +52,14 @@ $('.ui.form')
           prompt : 'Your password must be at least 6 characters'
         }
       ]
+    },
+    cover_page: {
+      identifier : 'cover_page',
+      rules: [
+        {
+          type   : 'empty',
+          prompt : 'Please enter a COVER PAGE'
+        }
+      ]
     }
   });
