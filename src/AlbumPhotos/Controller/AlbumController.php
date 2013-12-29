@@ -13,6 +13,7 @@ class AlbumController extends AppController
 	{
 		$albuns = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Album')->findAll();
 
+
 		return $this->app['twig']->render('album/index.html', array(
 			'albuns' => $albuns
 		));
