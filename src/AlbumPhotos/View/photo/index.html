@@ -35,11 +35,11 @@
 
 	<div class="ui middle aligned four column grid segment">
 		<div class="row">
-		{% for photo in photos %}
+		{% for p in photos %}
 			<div class="column">
 				<div class="ui images">
-						<a href="/photo/{{photo.id}}">
-							<img class="ui rounded image" src="upload/{{photo.filename}}">
+						<a href="#">
+							<img class="ui rounded image" src="/upload/{{p.photo}}" />
 						</a>
 				</div>
 			</div>

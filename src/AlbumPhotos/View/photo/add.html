@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block header %}
+	Album Photos 
+{% endblock %}
+
+{% block breadcrumb %}
+	
+	<div class="ui huge breadcrumb">
+		<a class="section" href="/album">Album</a>
+		<i class="right arrow icon divider"></i>
+		<a class="section" href="#">Photo</a>
+		<i class="right arrow icon divider"></i>
+		<div class="active section">add</div>
+	</div>	
+		
+{% endblock %}
+
+
+{% block content %}
+<div class="ui middle aligned column grid segment">
+		<div class="row">
+			<div class="column">
+				<div class="ui small form">
+					<form action="/photo/add" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="idAlbum" value="{{idAlbum}}">
+						<div class="field">
+							<label for="title">Title</label>
+							<div class="ui left labeled input">
+								<input placeholder="Title...." type="text" id="title" name="title">
+								<div class="ui corner label">
+							    	<i class="icon asterisk"></i>
+							    </div>
+							</div>
+						</div>
+						<div class="field">
+							<label for="photo">Photo</label>
+							<div class="ui left labeled input">
+								<input type="file" id="photo" name="photo">
+								<div class="ui corner label">
+							    	<i class="icon asterisk"></i>
+							    </div>
+							</div>
+						</div>
+						<div class="field">
+							<label for="legend">Legend</label>
+							<div class="ui left labeled input">
+								<textarea name="legend" id="legend" cols="30" rows="10" placeholder="Legend..."></textarea>
+							</div>
+						</div>
+						<div class="ui right floated wide column">
+							<button type="submit" class="ui green button">Submit</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

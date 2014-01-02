@@ -5,7 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
  
 /**
  * @ORM\Entity
- * @ORM\Table(name="photos")
+ * @ORM\Table(name="photo")
 */
 class Photo
 {
@@ -17,26 +17,18 @@ class Photo
 	protected $id;
 	
 	/**
-	 * @ORM\Column(type="date")
-	 *
-	 * @var string
-	 */
-	private $datephoto;
-
-	/**
-	 * @ORM\Column(type="filename", length=45)
-	 *
-	 * @var string
-	 */
-	private $filename;
-	
-	
-	/**
 	 * @ORM\Column(type="string", length=50)
 	 *
 	 * @var string
 	 */
 	private $title;
+
+	/**
+	 * @ORM\Column(type="string", length=45)
+	 *
+	 * @var string
+	 */
+	private $photo;
 
 	/**
 	 * @ORM\Column(type="string", length=255)
@@ -61,16 +53,6 @@ class Photo
 	    return $this->id;
 	}
 	
-	public function getDatePhoto()
-	{
-	    return $this->datephoto;
-	}
-	
-	public function setDatePhoto($datePhoto)
-	{
-	    return $this->datephoto = $datePhoto;
-	}
-	
 	public function getTitle()
 	{
 	    return $this->title;
@@ -79,6 +61,16 @@ class Photo
 	public function setTitle($title)
 	{
 	    return $this->title = $title;
+	}
+
+	public function getPhoto()
+	{
+		return $this->photo;
+	}
+
+	public function setPhoto($photo)
+	{
+		return $this->photo = $photo;
 	}
 
 	public function getLegend()
@@ -96,7 +88,7 @@ class Photo
 	    return $this->albumid;
 	}
 	
-	public function setUserId($albumid)
+	public function setAlbumId($albumid)
 	{
 	    return $this->albumid = $albumid;
 	}
