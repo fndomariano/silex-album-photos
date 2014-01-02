@@ -13,7 +13,6 @@ class AlbumController extends AppController
 	{
 		$albuns = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Album')->findAll();
 
-
 		return $this->app['twig']->render('album/index.html', array(
 			'albuns' => $albuns
 		));
@@ -28,7 +27,74 @@ class AlbumController extends AppController
 	{
 		$album = new Album();
 
-		$upload = $request->files->get('cover_page');
+		$album->setName( $request->get('name') );
+		$album->setUserId( $this->app['session']->get('user')['id'] );
+
+		if($request->get('description')){
+			$album->setDescription( $request->get('description') );
+		}
+ 		
+ 		$filename = $this->upload($request->files->get('cover_page'));
+		$album->setCoverPage( $filename );
+
+		$this->app['orm.em']->persist($album);
+		$this->app['orm.em']->flush();
+
+		$this->app['session']->getFlashBag()->add('success', 'Album created successfully');
+
+		return $this->app->redirect('/album'); 
+	}
+
+	public function edit($id)
+	{
+		$album = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Album')->find($id);
+
+		return $this->app['twig']->render('album/edit.html', array(
+			'album' => $album
+		));
+	}
+
+	public function editAction(Request $request)
+	{
+		$id = $request->get('id');
+		$album = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Album')->find($id);
+
+		$album->setName( $request->get('name') );
+
+		if($request->get('description'))
+		{
+			$album->setDescription( $request->get('description') );
+		}
+
+		if ($request->files->get('coverpage'))
+		{
+			$filename = $this->upload($request->files->get('coverpage'));
+			$album->setCoverPage( $filename );
+		}
+
+		$this->app['orm.em']->persist($album);
+		$this->app['orm.em']->flush();
+
+		$this->app['session']->getFlashBag()->add('success', 'Album updated successfully');
+
+		return $this->app->redirect('/album');
+	}
+
+	public function deleteAction($id)
+	{
+		$album = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Album')->find($id);
+
+		$this->app['orm.em']->remove($album);
+		$this->app['orm.em']->flush();
+
+		$this->app['session']->getFlashBag()->add('success', 'Album deleted successfully');
+
+		return $this->app->redirect('/album');
+
+	}
+
+	private function upload($upload)
+	{
 		$path   = 'upload'; 
 
 		//Criptografa o nome e adiciona a extensão na mesma
@@ -39,20 +105,6 @@ class AlbumController extends AppController
 		
 		$upload->move($path, $file_name);
 
-		$album->setName( $request->get('name') );
-		$album->setUserId( $this->app['session']->get('user')['id'] );
-
-		if($request->get('description')){
-			$album->setDescription( $request->get('description') );
-		}
-
-		$album->setCoverPage( $file_name );
-
-		$this->app['orm.em']->persist($album);
-		$this->app['orm.em']->flush();
-
-		$this->app['session']->getFlashBag()->add('success', 'Album created successfully');
-
-		return $this->app->redirect('/album'); 
+		return $file_name;
 	}
 }

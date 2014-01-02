@@ -40,6 +40,11 @@
 							<img class="ui rounded image" src="upload/{{album.coverpage}}">
 						</a>
 				</div>
+				<br/>
+				<div class="ui segment text-center">
+					<a href="/album/edit/{{album.id}}">Edit</a> |
+					<a href="/album/delete/{{album.id}}" onclick="confirm('Delete album?');">Delete</a>
+				</div>
 			</div>
 			{% endfor %}
 		</div>
