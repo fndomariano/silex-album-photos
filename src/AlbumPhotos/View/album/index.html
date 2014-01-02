@@ -41,9 +41,19 @@
 						</a>
 				</div>
 				<br/>
-				<div class="ui segment text-center">
-					<a href="/album/edit/{{album.id}}">Edit</a> |
-					<a href="/album/delete/{{album.id}}" onclick="confirm('Delete album?');">Delete</a>
+				<div class="ui text-center">
+					<div class="ui buttons">
+						
+						<a class="ui button blue" href="/album/edit/{{album.id}}" alt="Edit" title="Edit">
+							<i class="edit icon"></i>
+						</a>
+						
+						<div class="or"></div>
+				
+				 		<a class="ui button red" href="/album/delete/{{album.id}}" onclick="confirm('Delete album?');" alt="Delete" title="Delete">
+				 			<i class="remove icon"></i>
+				 		</a>
+					</div>
 				</div>
 			</div>
 			{% endfor %}

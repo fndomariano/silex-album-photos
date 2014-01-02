@@ -4,7 +4,7 @@ namespace AlbumPhotos\Controller;
 
 use Silex\Application;
 
-class AppController
+abstract class AppController
 {
 	protected $app;
 
