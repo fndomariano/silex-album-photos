@@ -17,13 +17,6 @@ class Photo
 	protected $id;
 	
 	/**
-	 * @ORM\Column(type="string", length=50)
-	 *
-	 * @var string
-	 */
-	private $title;
-
-	/**
 	 * @ORM\Column(type="string", length=45)
 	 *
 	 * @var string

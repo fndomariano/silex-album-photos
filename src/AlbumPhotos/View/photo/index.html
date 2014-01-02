@@ -37,10 +37,24 @@
 		<div class="row">
 		{% for p in photos %}
 			<div class="column">
-				<div class="ui images">
-						<a href="#">
-							<img class="ui rounded image" src="/upload/{{p.photo}}" />
+				<div class="ui medium images">
+					<a href="/upload/{{p.photo}}" data-lightbox="roadtrip" title="{{p.legend}}">
+						<img class="ui rounded image"  src="/upload/{{p.photo}}" />
+					</a>
+				</div>
+				<div class="ui text-center">
+					<div class="ui buttons">
+						
+						<a class="ui button blue" href="/photo/edit/{{p.id}}" alt="Edit" title="Edit">
+							<i class="edit icon"></i>
 						</a>
+						
+						<div class="or"></div>
+				
+				 		<a class="ui button red" href="/photo/delete/{{p.id}}" onclick="confirm('Delete album?');" alt="Delete" title="Delete">
+				 			<i class="remove icon"></i>
+				 		</a>
+					</div>
 				</div>
 			</div>
 			{% endfor %}

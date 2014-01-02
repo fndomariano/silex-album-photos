@@ -39,8 +39,6 @@ class PhotoController extends AppController
 	{
 		$photo = new Photo();
 
-		$photo->setTitle($request->get('title'));
-
 		if ($request->get('legend')) 
 		{
 			$photo->setLegend($request->get('legend'));
@@ -54,7 +52,49 @@ class PhotoController extends AppController
 		$this->app['orm.em']->persist($photo);
 		$this->app['orm.em']->flush();
 
+		$this->app['session']->getFlashBag()->add('success', 'Photo added successfully');
+
 		return $this->app->redirect('/album/' . $request->get('idAlbum'));
+	}
+
+	public function edit($id)
+	{
+		$photo = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Photo')->find($id);
+
+		return $this->app['twig']->render('photo/edit.html', array(
+			'photo' => $photo
+		));
+	}
+
+	public function editAction(Request $request)
+	{
+		$id = $request->get('id');
+		$photo = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Photo')->find($id);
+
+		if ($request->get('legend'))
+		{
+			$photo->setLegend($request->get('legend'));
+		}
+
+		$this->app['orm.em']->persist($photo);
+		$this->app['orm.em']->flush();
+
+		$this->app['session']->getFlashBag()->add('success', 'The caption of your photo has been edited successfully');
+		
+		return $this->app->redirect('/album/' . $photo->getAlbumId());
+	}
+
+	public function deleteAction($id)
+	{
+		$photo = $this->app['orm.em']->getRepository('AlbumPhotos\Model\Photo')->find($id);
+
+		$this->app['orm.em']->remove($photo);
+		$this->app['orm.em']->flush();
+
+		$this->app['session']->getFlashBag()->add('success', 'Photo deleted successfully');
+
+		return $this->app->redirect('/album/' . $photo->getAlbumId());
+
 	}
 
 	private function upload($upload)

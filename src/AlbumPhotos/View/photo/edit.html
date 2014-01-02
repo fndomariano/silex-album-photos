@@ -11,7 +11,7 @@
 		<i class="right arrow icon divider"></i>
 		<a class="section" href="#">Photo</a>
 		<i class="right arrow icon divider"></i>
-		<div class="active section">add</div>
+		<div class="active section">edit</div>
 	</div>	
 		
 {% endblock %}
@@ -22,21 +22,12 @@
 		<div class="row">
 			<div class="column">
 				<div class="ui small form">
-					<form action="/photo/add" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="idAlbum" value="{{idAlbum}}">
-						<div class="field">
-							<label for="photo">Photo</label>
-							<div class="ui left labeled input">
-								<input type="file" id="photo" name="photo">
-								<div class="ui corner label">
-							    	<i class="icon asterisk"></i>
-							    </div>
-							</div>
-						</div>
+					<form action="/photo/edit" method="post">
+						<input type="hidden" name="id" value="{{photo.id}}">
 						<div class="field">
 							<label for="legend">Legend</label>
 							<div class="ui left labeled input">
-								<textarea name="legend" id="legend" cols="30" rows="10" placeholder="Legend..."></textarea>
+								<textarea name="legend" id="legend" cols="30" rows="10" placeholder="Legend...">{{photo.legend}}</textarea>
 							</div>
 						</div>
 						<div class="ui right floated wide column">
