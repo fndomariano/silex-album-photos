@@ -1,2 +1,5 @@
-/vendor/
-/upload
+vendor/
+composer.lock
+.env
+uploads/*
+!uploads/.gitkeep

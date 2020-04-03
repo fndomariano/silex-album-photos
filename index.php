@@ -3,17 +3,16 @@
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\TwigServiceProvider;
- 
 use Doctrine\Common\Cache\ApcCache as Cache;
 use Doctrine\Common\Collections\ArrayCollection;
-use Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
+use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
- 
+
 require_once __DIR__.'/bootstrap.php';
- 
+
 $app = new Application();
 
 $app->register(new TwigServiceProvider, array(
@@ -24,15 +23,16 @@ $app->register(new TwigServiceProvider, array(
 $app->register(new DoctrineServiceProvider, array(
     'db.options' => array(
         'driver' => 'pdo_mysql',
-        'host' => 'localhost',
-        'user' => 'root',
-        'password' => 'root',
-        'dbname' => 'album'
+        'host' => getenv('DB_HOST'),
+        'user' => getenv('DB_USER'),
+        'password' => getenv('DB_PASS'),
+        'dbname' => getenv('DB_NAME')
     )
 ));
 
+
 //configuração do ORM
-$app->register(new DoctrineOrmServiceProvider(), array(
+$app->register(new Dflydev\Silex\Provider\DoctrineOrm\DoctrineOrmServiceProvider, array(
     'orm.proxies_dir' => '/tmp',
     'orm.em.options' => array(
         'mappings' => array(
@@ -57,5 +57,5 @@ $app['session'] = $session;
 //Rotas
 require_once __DIR__.'/src/AlbumPhotos/Routes/routes.php';
 
-$app['debug'] = true;
+$app['debug'] = getenv('DEBUG');
 $app->run();

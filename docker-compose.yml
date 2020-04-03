@@ -1,0 +1,26 @@
+version: '3'
+services:
+    app:        
+        build: 
+            context: ./devops/php
+        container_name: album_app
+        ports:
+            - "80:80"
+        volumes:
+            - .:/var/www/html            
+            - ./devops/php/php.ini:/usr/local/etc/php/php.ini            
+        links:
+            - db
+    db:        
+        build: 
+            context: ./devops/mysql
+        container_name: album_db
+        env_file:
+          - .env
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_DATABASE=${DB_NAME}
+            - MYSQL_USER=${DB_USER}
+            - MYSQL_PASSWORD=${DB_PASS}
+            - MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}
