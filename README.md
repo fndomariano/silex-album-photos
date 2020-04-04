@@ -23,7 +23,7 @@ $ docker-compose exec app composer install
 d) Create database
 ```bash
 $ docker exec -it album_app bash 
-# ./vendor/bin/doctrine orm:schema-tool:create
+root@9f801fa2e7ac:/var/www/html# ./vendor/bin/doctrine orm:schema-tool:create
 ```
 
 e) Access on ```http://localhost```
