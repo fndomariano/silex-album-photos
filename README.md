@@ -1,18 +1,29 @@
-# Silex Album Photos
+# Album Photos
 
-1) Configure ```.env``` file
+I've built this project to study Silex micro-framework. Basically it consists on create album photos.
 
-2) Up the Docker containers
+## Install 
+
+a) Configure environment file
+
 ```bash
-docker-compose up -d
+$ cp .env.default .env
 ```
 
-3) Install dependencies
+b) Up the Docker containers
 ```bash
-docker-compose exec app composer install
+$ docker-compose up -d
 ```
 
-4) Create database
+c) Install dependencies
 ```bash
-./vendor/bin/doctrine orm:schema-tool:create
+$ docker-compose exec app composer install
 ```
+
+d) Create database
+```bash
+$ docker exec -it album_app bash 
+# ./vendor/bin/doctrine orm:schema-tool:create
+```
+
+e) Access on ```http://localhost```
