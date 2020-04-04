@@ -3,6 +3,7 @@
 use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 use Silex\Provider\TwigServiceProvider;
+use Silex\Provider\UrlGeneratorServiceProvider;
 use Doctrine\Common\Cache\ApcCache as Cache;
 use Doctrine\Common\Collections\ArrayCollection;
 use Dflydev\Provider\DoctrineOrm\DoctrineOrmServiceProvider;

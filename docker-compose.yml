@@ -9,6 +9,7 @@ services:
         volumes:
             - .:/var/www/html            
             - ./devops/php/php.ini:/usr/local/etc/php/php.ini            
+            - ./devops/php/vhost.conf:/etc/apache2/sites-enabled/000-default.conf
         links:
             - db
     db:        
